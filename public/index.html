@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte de Situación de Aeronaves - EOFAP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#0b0e14] text-gray-100 min-h-screen overflow-x-hidden">
+    <!-- Navbar -->
+    <nav class="glass-nav sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+            </div>
+            <h1 class="text-xl font-bold tracking-tight">Situación de Aeronaves <span class="text-blue-500">EOFAP</span></h1>
+        </div>
+        <div class="flex space-x-6">
+            <button onclick="showSection('dashboard')" class="nav-link active">Dashboard</button>
+            <button onclick="showSection('reporte-manual')" class="nav-link">Reportar Situación</button>
+            <button onclick="showSection('parte-diario')" class="nav-link">Parte Diario</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="space-y-8">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="text-3xl font-bold">Resumen de Flota</h2>
+                    <p class="text-gray-400 mt-1">Situación operativa consolidada a tiempo real</p>
+                </div>
+                <div class="flex space-x-3">
+                    <input type="date" id="dash-date" class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                    <button onclick="refreshDashboard()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-all shadow-lg shadow-blue-500/20">
+                        Actualizar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6" id="stats-grid">
+                <!-- Dynamic Content -->
+            </div>
+
+            <!-- Recent Situations -->
+            <div class="glass-card overflow-hidden">
+                <div class="px-6 py-4 border-b border-white/10 flex justify-between items-center">
+                    <h3 class="font-semibold text-lg">Últimos Reportes de Situación</h3>
+                    <button onclick="showSection('reporte-manual')" class="text-blue-400 hover:text-blue-300 text-sm font-medium">Ver todos →</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-white/5 text-gray-400 text-sm uppercase">
+                            <tr>
+                                <th class="px-6 py-3">Matrícula</th>
+                                <th class="px-6 py-3">Tipo</th>
+                                <th class="px-6 py-3">Condición</th>
+                                <th class="px-6 py-3">Ubicación</th>
+                                <th class="px-6 py-3">Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="situations-table-body" class="divide-y divide-white/5 text-sm">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Report Form Section -->
+        <section id="reporte-manual" class="hidden max-w-2xl mx-auto">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold">Reportar Situación</h2>
+                <p class="text-gray-400 mt-1">Registrar estado técnico y geográfico de una aeronave</p>
+            </div>
+            
+            <form id="situation-form" class="glass-card p-8 space-y-6">
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-400">Fecha</label>
+                        <input type="date" name="FECHA" required class="form-input">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-400">Matrícula</label>
+                        <input type="text" name="MATRICULA" placeholder="Ej: FAP-123" required class="form-input uppercase">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-400">Tipo de Aeronave</label>
+                        <input type="text" name="TIPOAERONAVE" placeholder="Ej: KT-1P" required class="form-input">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-400">ID Tipo (Ext)</label>
+                        <input type="number" name="IDTIPOAERONAVE_EXT" placeholder="Ej: 101" required class="form-input">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-400">Condición</label>
+                        <select name="IDCONDICION" id="select-condicion" required class="form-input">
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-400">Ubicación</label>
+                        <select name="IDUBICACION" id="select-ubicacion" required class="form-input">
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-400">Código Unidad</label>
+                        <input type="text" name="CODUNIDAD" placeholder="Ej: GRU7" required class="form-input">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-400">Sigla</label>
+                        <input type="text" name="SIGLA" placeholder="Ej: ESB" required class="form-input text-blue-400 font-bold uppercase">
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-400">Total Horas</label>
+                    <input type="number" step="0.01" name="TOTALHORAS" placeholder="0.00" required class="form-input">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-400">Observaciones</label>
+                    <textarea name="OBSERVACION" rows="3" class="form-input" placeholder="Detalles técnicos..."></textarea>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold transition-all shadow-lg shadow-blue-500/20">
+                        Guardar Reporte
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Parte Diario Section -->
+        <section id="parte-diario" class="hidden space-y-8">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="text-3xl font-bold">Parte Diario de Aeronaves</h2>
+                    <p class="text-gray-400 mt-1">Consolidación oficial por Tipo de Aeronave</p>
+                </div>
+                <div class="flex space-x-3">
+                    <input type="date" id="parte-date" class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                    <button onclick="generarParteDiario()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-medium transition-all shadow-lg shadow-emerald-500/20">
+                        Generar Parte Hoy
+                    </button>
+                    <button onclick="verParteDiario()" class="bg-white/5 hover:bg-white/10 text-white px-6 py-2 rounded-lg font-medium border border-white/10 transition-all">
+                        Consultar
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-white/5 text-gray-400 text-sm uppercase">
+                            <tr>
+                                <th class="px-6 py-4">Tipo de Aeronave</th>
+                                <th class="px-6 py-4 text-center">Efectivo</th>
+                                <th class="px-6 py-4 text-center text-red-400">Inop.</th>
+                                <th class="px-6 py-4 text-center text-orange-400">Disp.</th>
+                                <th class="px-6 py-4 text-center text-emerald-400">Op.</th>
+                                <th class="px-6 py-4">Última Actualización</th>
+                            </tr>
+                        </thead>
+                        <tbody id="parte-table-body" class="divide-y divide-white/5">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-8 right-8 transform translate-y-20 opacity-0 transition-all duration-300 z-[100]">
+        <div class="glass-card px-8 py-4 flex items-center space-x-3 border-l-4 border-blue-500">
+            <div id="toast-icon"></div>
+            <p id="toast-message" class="font-medium"></p>
+        </div>
+    </div>
+
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

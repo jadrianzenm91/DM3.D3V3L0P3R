@@ -1,0 +1,6 @@
+Crea una aplicacion de "Parte de Situación de Aeronaves" Usa los Skill's para crear el proyecto. 
+Cabe mencionar que algunos casos de uso son:
+1.- Una aeronave puede estar en la Condicion Operativo/Inoperativo/Disponible.
+2.- Diariamente se reporta la situación de una aeronave que se encuentra a cargo de una Unidad determinada, incluyendo la ubicación geografica.
+3.- Al final del día se calcula el Parte Diario de Aeronaves, totalizando por Tipo de Aeronave, Condición y la Cantidad de Efectivos(suma de Inoperativos+disponibles+operativos), Cantidad Inoperativos, Cantidad Disponibles, Cantidad Operativos.
+4.- El parte diario tiene un detalle de registros que contiene las matriculas de cada Tipo de Aeronave y su Condición del día del parte calculado.

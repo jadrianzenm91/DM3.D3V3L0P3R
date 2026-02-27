@@ -1,8 +1,5 @@
 node_modules/
 .env
-*.log
-.DS_Store
+.ds_store
 dist/
 build/
-extract_schema.js
-test_db.js

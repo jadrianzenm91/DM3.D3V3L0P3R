@@ -6,7 +6,8 @@
 - Servidor: Node.js (Express) configurado para servir archivos estáticos y API.
 
 ## Modelo de Datos
-- Adherirse estrictamente al esquema `eofapcd3`.
+- **Fuente de Verdad**: El archivo `schema.sql` es el diseño maestro de la base de datos. Cualquier cambio estructural debe reflejarse primero allí.
+- Adherirse estrictamente al esquema `eofapcd3` documentado en el DDL.
 - **Diferenciación de Identidad**: El **Tipo de Aeronave** (modelo/clase) y la **Matrícula** (identificador único de la unidad) son campos separados y nunca deben combinarse.
 - Campos técnicos obligatorios: `TOTALHORAS` (Decimal), `CODUNIDAD` (String), `SIGLA` (String).
 - Claves primarias: `ID` (Gestionados manualmente en el backend si no son autoincrementales).

@@ -1,15 +1,22 @@
-# Agentes: Parte de Situación de Aeronaves
+# Sistema de Agentes Especializados: @DMC.1NST1TUT3
 
-## Agente Principal: Antigravity
-- **Rol**: Arquitecto de Software y Desarrollador Full-Stack.
-- **Objetivo**: Mantener y evolucionar la aplicación "Parte de Situación de Aeronaves".
-- **Capacidades**:
-    - Gestión y optimización del esquema de base de datos.
-    - Desarrollo frontend con Tailwind y JS.
-    - Mantenimiento de documentación.
-    - Validación de reglas de negocio para el reporte de aeronaves.
+Para garantizar la máxima precisión y mantenibilidad, el proyecto se divide en agentes especializados que operan bajo reglas y habilidades específicas.
 
-## Flujo de Trabajo Colaborativo
-- El agente trabaja junto al usuario humano para asegurar la integridad de los datos.
-- Las actualizaciones de la base de datos se realizan tras confirmar el cumplimiento de la lógica de negocio.
-- Los cambios en la interfaz de usuario (UI) se proponen mediante prototipos o implementación directa en el servidor de desarrollo.
+## 1. Agente Especialista en Situación de Flota
+- **Rol**: Gestionar la salud técnica y operativa de las aeronaves.
+- **Habilidades asociadas**: [.agent/skills/situacion-tecnica/](file:///c:/Users/pc/Documents/JonathanAdrianzen/Docente/DMC/Conferencia/proyecto-web/.agent/skills/situacion-tecnica/SKILL.md)
+
+## 2. Agente de Inteligencia Geográfica
+- **Rol**: Administrar el despliegue territorial de los activos.
+- **Habilidades asociadas**: [.agent/skills/inteligencia-geografica/](file:///c:/Users/pc/Documents/JonathanAdrianzen/Docente/DMC/Conferencia/proyecto-web/.agent/skills/inteligencia-geografica/SKILL.md)
+
+## 3. Agente de Auditoría y Reportes (Dashboard)
+- **Rol**: Transformar la data técnica en inteligencia de decisión.
+- **Habilidades asociadas**: [.agent/skills/consolidacion-reportes/](file:///c:/Users/pc/Documents/JonathanAdrianzen/Docente/DMC/Conferencia/proyecto-web/.agent/skills/consolidacion-reportes/SKILL.md)
+
+## 4. Agente de Infraestructura y Despliegue (DevOps)
+- **Rol**: Garantizar la disponibilidad y seguridad del sistema en la nube.
+- **Habilidades asociadas**: [.agent/skills/operaciones-devops/](file:///c:/Users/pc/Documents/JonathanAdrianzen/Docente/DMC/Conferencia/proyecto-web/.agent/skills/operaciones-devops/SKILL.md)
+
+---
+**Gobernanza**: Todos los agentes deben cumplir estrictamente con las normas definidas en `Rules.md`.
