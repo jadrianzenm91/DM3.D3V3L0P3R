@@ -1,0 +1,21 @@
+# Contexto para LLMS: Parte de Situación de Aeronaves
+
+Este proyecto es una aplicación web para reportar la situación de aeronaves en la EOFAP (Escuela de Oficiales de la FAP).
+
+## Stack Tecnológico
+- Frontend: Tailwind CSS, HTML5, JavaScript Vanilla.
+- Backend: Node.js (Express), MySQL (51.79.66.140:33306).
+- Patrón: Client-Server con API REST.
+
+## Dominio Principal
+- **Aeronave**: Sujeto del reporte (Matrícula).
+- **Condición**: Operativo, Inoperativo, Disponible.
+- **Campos Técnicos**: `TOTALHORAS` (Decimal), `CODUNIDAD`, `SIGLA`.
+- **Ubigeo**: Catálogo FAP mediante `IDUBICACION`.
+- **Parte Diario**: Resumen consolidado generado por agregación de datos de situación.
+
+## Aspectos Destacados del Esquema de Base de Datos
+- `TT_SITUACION`: Almacena registros individuales con campos técnicos y geográficos.
+- `TT_PARTE_DIARIO`: Almacena el resumen agregado (EFECTIVO, OPERATIVOS, etc.) por fecha y tipo de aeronave.
+- `TM_CONDICION` y `TM_UBIGEO_FAP`: Tablas maestras de consulta.
+

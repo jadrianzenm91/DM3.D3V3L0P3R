@@ -1,0 +1,35 @@
+:root {
+    --primary: #1e293b;
+    --secondary: #334155;
+    --accent: #3b82f6;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --bg-dark: #0f172a;
+    --text-light: #f8fafc;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+}
+
+.glass-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.status-operative { background-color: var(--success); box-shadow: 0 0 10px var(--success); }
+.status-inoperative { background-color: var(--danger); box-shadow: 0 0 10px var(--danger); }
+.status-available { background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }

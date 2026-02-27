@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3V3L0P3R.D4Y @DMC.1NST1TUT3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e293b',
+                        accent: '#3b82f6',
+                        success: '#10b981',
+                        danger: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="min-h-screen p-4 md:p-8">
+    <!-- Navegación -->
+    <nav class="max-w-7xl mx-auto mb-8 flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-bold text-white tracking-tight">D3V3L0P3R.D4Y</h1>
+            <p class="text-slate-400 text-sm">Parte de Situación de Aeronaves</p>
+        </div>
+        <div class="flex gap-4">
+            <button onclick="showSection('dashboard')"
+                class="px-4 py-2 rounded-lg bg-accent text-white hover:bg-blue-600 transition">Dashboard</button>
+            <button onclick="showSection('report')"
+                class="px-4 py-2 rounded-lg bg-slate-800 text-white hover:bg-slate-700 transition">Nuevo
+                Reporte</button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Estadísticas Rápidas -->
+                <div class="glass-card p-6">
+                    <h3 class="text-slate-400 text-sm font-semibold mb-2">EFECTIVOS</h3>
+                    <p id="total-efectivos" class="text-4xl font-bold">0</p>
+                </div>
+                <div class="glass-card p-6">
+                    <h3 class="text-slate-400 text-sm font-semibold mb-2">OPERATIVOS</h3>
+                    <p id="total-operativos" class="text-4xl font-bold text-success">0</p>
+                </div>
+                <div class="glass-card p-6">
+                    <h3 class="text-slate-400 text-sm font-semibold mb-2">INOPERATIVOS</h3>
+                    <p id="total-inoperativos" class="text-4xl font-bold text-danger">0</p>
+                </div>
+                <div class="glass-card p-6">
+                    <h3 class="text-slate-400 text-sm font-semibold mb-2">DISPONIBLES</h3>
+                    <p id="total-disponibles" class="text-4xl font-bold text-accent">0</p>
+                </div>
+            </div>
+
+            <!-- Tabla de Parte Diario -->
+            <div class="glass-card overflow-hidden">
+                <div class="p-6 border-b border-slate-700 flex justify-between items-center">
+                    <h2 class="text-xl font-semibold">Resumen por Tipo de Aeronave</h2>
+                    <span class="text-slate-400 text-sm" id="current-date"></span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-800/50 text-slate-400 text-xs uppercase">
+                            <tr>
+                                <th class="p-4">Tipo Aeronave</th>
+                                <th class="p-4">Efectivo</th>
+                                <th class="p-4">Operativos</th>
+                                <th class="p-4">Inoperativos</th>
+                                <th class="p-4">Disponibles</th>
+                            </tr>
+                        </thead>
+                        <tbody id="summary-table-body" class="divide-y divide-slate-700">
+                            <!-- Datos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Section (Hidden by default) -->
+        <section id="report" class="hidden">
+            <div class="max-w-2xl mx-auto glass-card p-8">
+                <h2 class="text-2xl font-bold mb-6">Registro de Situación Diaria</h2>
+                <form id="daily-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Aeronave (Matrícula)</label>
+                            <input type="text" id="matricula"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                                required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Condición</label>
+                            <select id="condicion"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:border-accent outline-none"
+                                required>
+                                <option value="1">Operativo</option>
+                                <option value="2">Inoperativo</option>
+                                <option value="3">Disponible</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Total Horas</label>
+                            <input type="number" id="total-horas" step="0.01"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:border-accent outline-none"
+                                required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Cód. Unidad</label>
+                            <input type="text" id="cod-unidad"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:border-accent outline-none"
+                                required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Sigla</label>
+                            <input type="text" id="sigla"
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:border-accent outline-none"
+                                required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-2">Ubicación (Ubigeo Perú)</label>
+                        <select id="ubigeo-id"
+                            class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:border-accent outline-none"
+                            required>
+                            <option value="">Seleccione Ubicación</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-2">Lugar / Dirección</label>
+                        <textarea id="direccion" rows="2"
+                            class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white outline-none"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-success text-white font-bold py-3 rounded-lg hover:bg-emerald-600 transition">
+                        Guardar Registro
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>
