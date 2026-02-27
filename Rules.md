@@ -23,3 +23,8 @@
 - Botón interactivo para totalizar el estado diario desde el Dashboard.
 - Notificaciones de éxito para cada registro y proceso de cálculo.
 
+## Despliegue y Seguridad (CI/CD)
+- **Repositorio**: Utilizar GitHub como fuente de verdad única y disparador de despliegue.
+- **Seguridad de Secretos**: El archivo `.env` nunca debe subirse al repositorio. Es obligatorio mantener un `.gitignore` integral.
+- **Portabilidad de API**: La `API_BASE_URL` en el frontend debe ser siempre relativa (`/api`) para permitir el funcionamiento transparente entre entornos (Local vs Producción).
+- **Redespliegue Automático**: Todo cambio confirmado en la rama `main` de GitHub debe sincronizarse automáticamente con el servidor de producción (Render).

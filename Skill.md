@@ -29,4 +29,14 @@
 - **Funciones**:
     - `getAircraftDetail(matricula)`
     - `saveSituacionActual(formData)`: Persiste la información técnica y de ubicación vinculada a una matrícula.
+## 6. Despliegue Continuo y CI/CD
+- **Descripción**: Automatiza la subida de cambios y el despliegue en entornos de nube (Render).
+- **Funciones**:
+    - `setupGitRepository()`: Inicializa Git y configura `.gitignore` para proteger secretos.
+    - `pushToProduction(repositoryUrl)`: Sincroniza el código local con el remoto para disparar el redespliegue.
+    - `configureEnvironmentVariables()`: Valida que el archivo `.env` local sea compatible con los secretos de Render.
 
+## 7. Gestión de Entornos Dinámicos
+- **Descripción**: Asegura que el frontend se comunique con el backend sin importar la URL del despliegue.
+- **Funciones**:
+    - `setRelativeAPIPath()`: Configura `API_BASE_URL` como ruta relativa (`/api`) para eliminar problemas de CORS.
