@@ -1,5 +1,5 @@
-const API_BASE_URL = 'http://localhost:3000/api';
-//const API_BASE_URL = 'https://zingy-stardust-70cf98.netlify.app//api';
+// Usamos ruta relativa para que funcione tanto local como en producción (Render)
+const API_BASE_URL = '/api';
 
 document.addEventListener('DOMContentLoaded', () => {
     init();
